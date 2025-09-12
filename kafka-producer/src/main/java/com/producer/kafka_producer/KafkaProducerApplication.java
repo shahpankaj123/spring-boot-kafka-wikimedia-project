@@ -1,13 +1,25 @@
 package com.producer.kafka_producer;
 
+import com.producer.kafka_producer.service.KafkaProducerChanges;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KafkaProducerApplication {
+public class KafkaProducerApplication implements CommandLineRunner {
+
+	@Autowired
+	private KafkaProducerChanges kafkaProducerChanges;
 
 	public static void main(String[] args) {
 		SpringApplication.run(KafkaProducerApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		kafkaProducerChanges.sendMessage();
 	}
 
 }
